@@ -28,18 +28,22 @@ def extract_json(i):
   rs = []
   t = ''
   i_dic = json.loads(i)
+  rs.append('[ translation ]')
   rs.append(i_dic['translation'][0])
   basic = i_dic.get('basic')
   if basic:
     if basic.get('phonetic'):
-      rs.append(i_dic['basic']['phonetic'])
+      rs[-1] = rs[-1] + '   ' + i_dic['basic']['phonetic']
     if basic.get('explains'):
-        rs.append('\n'.join(basic['explains']))
+      rs.append('[ explains ]')
+      rs.append('\n'.join(basic['explains']))
   web = i_dic.get('web')
   if web:
+    rs.append('[ phrase ]')
     for e in web:
       t = e['key'].ljust(24) + ','.join(e['value']) 
       rs.append(t)
+  rs.append('[ End ]')
   o = '\n'.join(rs)
   return o
   

@@ -1,0 +1,3 @@
+#! /bin/bash
+cp ./yd.py /usr/bin
+ln -sf /usr/bin/yd.py /usr/bin/yd
